@@ -68,6 +68,25 @@
                         </select>
                   </div>
       </div>
+      <div class="row">
+                <div class="col-2">
+                   <span>Audit Type:</span>
+                   <select class="form-control" id="audit_type_sec1">
+                        <option value="">Select Audit Type</option>
+                        <option value="initial">Initial</option>
+                        <option value="final">Final</option>
+                    </select>
+                </div>
+                 <div class="col-2">
+                   <span>Initial Count:</span>
+                  <input type="text" name="initial_count" id="initial_count" class="form-control" disabled>
+                </div>
+                 <div class="col-2">
+                   <span>Final Count:</span>
+                   
+                  <input type="text" name="final_count" id="final_count" class="form-control" disabled>
+                </div>
+      </div>
       <br>
 <div class="row">
     <div class="col-12">

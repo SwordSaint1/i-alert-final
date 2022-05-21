@@ -44,35 +44,35 @@
                 <h3 class="card-title">
 
               <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                   <label>Employee ID: </label>
                   <input type="text" name="empid" id="empid" class="form-control">
                  </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <label>Full Name: </label>
                     <input type="text" name="fname" id="fname" class="form-control">
                   </div>
 
-                   <div class="col-4">
+                   <div class="col-3">
                     <label>Line No: </label>
                     <input type="text" name="linen" id="linen" class="form-control">
                   </div>
 
-              </div>
-              <br>
-              <div class="row">
-                  <div class="col-4">
+                      <div class="col-3">
                     <label>Car Maker: </label>
                     <input type="text" name="carmaker" id="carmaker" class="form-control">
                   </div>
 
-                  <div class="col-4">
+              </div>
+              
+              <div class="row">
+                  <div class="col-3">
                     <label>Car Model: </label>
                     <input type="text" name="carmodel" id="carmodel" class="form-control">
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <label>Position: </label>
                     <select id="position" class="form-control" autocomplete=off> 
                       <option value="">Select Position</option>
@@ -84,6 +84,33 @@
                         <option value="assistant manager">Assistant Manager</option>
                         <option value="manager">Manager</option>
                     </select>
+                  </div>
+
+                  <div class="col-3">
+                    <label>Audit Category:</label>
+                    <select id="audit_cat" class="form-control">
+                      <option value="">Select Audit Category </option>
+                      <option value="minor">Minor</option>
+                      <option value="major">Major</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <label>Audit Type:</label>
+                    <select id="audit_typ" class="form-control">
+                      <option value="">Select Audit Type </option>
+                      <option value="initial">Initial</option>
+                      <option value="final">Final</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-3">
+                    <label>Section:</label>
+                    <input type="text" name="sect" id="sect" class="form-control">
+                  </div>
+                  <div class="col-3">
+                    <label>Provider:</label>
+                    <input type="text" name="prov" id="prov" class="form-control">
                   </div>
               </div>
  
@@ -138,6 +165,7 @@
                     <th style="text-align:center;">Audit Findings</th>
                     <th style="text-align:center;">Audited By</th>
                     <th style="text-align:center;">Audit Category</th>
+                    <th style="text-align:center;">Audit Type</th>
                     <th style="text-align:center;">Remarks</th> 
                     <th style="text-align:center;">Concerned Group</th>              
                     <th style="text-align:center;">AGENCY Status</th> 

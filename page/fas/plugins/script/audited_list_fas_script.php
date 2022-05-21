@@ -43,6 +43,7 @@ const load_list_of_audited_findings_fas =()=>{
      var section = document.getElementById('section').value;
      var audit_type = document.getElementById('audit_type').value;
      var position = document.getElementById('position').value;
+     var audit_categ = document.getElementById('audit_categ').value;
                 $.ajax({
                 url: '../../process/fas/audited_list_fas_processor.php',
                 type: 'POST',
@@ -59,7 +60,8 @@ const load_list_of_audited_findings_fas =()=>{
                     carmodel:carmodel,
                     section:section,
                     audit_type:audit_type,
-                    position:position
+                    position:position,
+                    audit_categ:audit_categ
                     
                 },success:function(response){
                     // console.log(response);

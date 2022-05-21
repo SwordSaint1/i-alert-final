@@ -19,7 +19,7 @@ if ($method == 'count_for_update_fas') {
         $agency = $x['agency'];
         $days_notif = date("Y-m-d", strtotime('+4 day',strtotime($date_audited)));
 
-        $count_na = "SELECT COUNT(*) as total FROM ialert_audit WHERE provider = 'FAS' AND section = '$section' AND date_sent IS NULL";
+        $count_na = "SELECT COUNT(*) as total FROM ialert_audit WHERE provider = 'FAS' AND section = '$section' AND date_sent IS NULL AND edit_count != '0'";
             $stmt2 = $conn->prepare($count_na);
             $stmt2->execute();
             foreach($stmt2->fetchALL() as $j){
@@ -45,10 +45,11 @@ if ($method == 'fetch_audited_list_fas') {
     $section = $_POST['section'];
     $audit_type = $_POST['audit_type'];
     $position = $_POST['position'];
+    $audit_categ = $_POST['audit_categ'];
     $c = 0;
 
     $query = "SELECT * FROM ialert_audit
-    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%'  AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND pd IS NULL AND hr IS NULL AND section = '$section' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%'
+    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%'  AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND pd IS NULL AND hr IS NULL AND section = '$section' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%' AND audited_categ LIKE '$audit_categ%' 
      GROUP BY id ORDER BY date_audited ASC";
     $stmt = $conn->prepare($query);
     $stmt->execute();

@@ -179,7 +179,7 @@ const sec1 =()=>{
                 }   
     });
 
-}
+} 
 
 const sec1total =()=>{
     var dateFrom = document.getElementById('auditeddatefrom').value;

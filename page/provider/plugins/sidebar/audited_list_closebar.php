@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="dashboard.php" class="nav-link active">
+            <a href="dashboard.php" class="nav-link">
               <i class="fas fa-chalkboard"></i>
               <p>
                 Dashboard
@@ -49,8 +49,8 @@
               </p>
             </a>
           </li>
-             <li class="nav-item">
-            <a href="audited_close.php" class="nav-link ">
+              <li class="nav-item">
+            <a href="audited_close.php" class="nav-link active">
               <i class=" fas fa-list"></i>
               <p>
               List of Audited Closed

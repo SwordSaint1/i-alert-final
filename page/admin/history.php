@@ -139,7 +139,7 @@
                     <th style="text-align:center;">AGENCY Status</th> 
                     <th style="text-align:center;">HR Status</th> 
                     <th style="text-align:center;">Updated By</th>
-                    <th style="text-align:center">Edit Count</th>
+                    <th style="text-align:center">Date Edited</th>
 
                 </thead>
                 <tbody id="history_data" style="text-align:center;"></tbody>

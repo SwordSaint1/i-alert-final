@@ -12,6 +12,7 @@ const load_list_of_audited_send =()=>{
     var carmodel = document.getElementById('carmodel_send').value;
     var audit_type = document.getElementById('audit_type_send').value;
     var esection = '<?=$esection;?>';
+    var audit_categ = document.getElementById('audit_categ_send').value;
              
     $.ajax({
         url: '../../process/fas/audited_send_processor.php',
@@ -28,7 +29,8 @@ const load_list_of_audited_send =()=>{
             position:position,
             carmaker:carmaker,
             carmodel:carmodel,
-            audit_type:audit_type                              
+            audit_type:audit_type ,
+            audit_categ:audit_categ                             
             
             },success:function(response){
             document.getElementById('audited_data_send').innerHTML = response;

@@ -32,6 +32,7 @@ const load_list_of_audited_findings_provider =()=>{
     var esection = '<?=$esection;?>';
     var carmaker = document.getElementById('carmaker').value;
     var carmodel = document.getElementById('carmodel').value;
+    var audit_categ = document.getElementById('audit_categ').value;
            $.ajax({
                 url: '../../process/provider/provider_processor.php',
                 type: 'POST',
@@ -45,7 +46,8 @@ const load_list_of_audited_findings_provider =()=>{
                     esection:esection,
                     lname:lname,
                     carmaker:carmaker,
-                    carmodel:carmodel                  
+                    carmodel:carmodel,
+                    audit_categ:audit_categ                  
                 },success:function(response){
                     document.getElementById('audited_data_provider').innerHTML = response;
                     $('#spinner').fadeOut(function(){                
@@ -142,4 +144,6 @@ const update_status_status =()=>{
    }
 }
 }
+
+
 </script>

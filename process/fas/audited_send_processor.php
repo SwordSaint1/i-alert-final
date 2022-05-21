@@ -14,9 +14,10 @@ if ($method == 'fetch_audited_list_send') {
     $carmaker = $_POST['carmaker'];
     $carmodel = $_POST['carmodel'];
     $audit_type = $_POST['audit_type'];
+    $audit_categ = $_POST['audit_categ'];
     $c = 0;
 
-    $query = "SELECT *,date_format(date_sent, '%Y-%m-%d %H:%i:%s') as date_sent FROM ialert_audit WHERE pd = 'IR' AND date_sent IS NOT NULL AND hr IS NULL AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') AND provider = '$esection' AND line_no LIKE '$lname%' AND position LIKE '$position%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND audit_type LIKE '$audit_type%' GROUP BY id ORDER BY date_audited ASC";
+    $query = "SELECT *,date_format(date_sent, '%Y-%m-%d %H:%i:%s') as date_sent FROM ialert_audit WHERE pd = 'IR' AND date_sent IS NOT NULL AND hr IS NULL AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') AND provider = '$esection' AND line_no LIKE '$lname%' AND position LIKE '$position%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND audit_type LIKE '$audit_type%' AND audited_categ LIKE '$audit_categ%' GROUP BY id ORDER BY date_audited ASC";
 
     $stmt = $conn->prepare($query);
     $stmt->execute();

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	
+
 const recieved =()=>{
      $('#spinner').css('display','block');
      var empid = document.getElementById('empid_audited_fas_recieved').value;
@@ -13,6 +13,7 @@ const recieved =()=>{
      var section = document.getElementById('section_recieved').value;
      var audit_type = document.getElementById('audit_type_recieved').value;
      var position = document.getElementById('position_recieved').value;
+     var audit_categ = document.getElementById('audit_categ_recieved').value;
      
      $.ajax({
      url: '../../process/fas/audited_recieved_processor.php',
@@ -30,7 +31,8 @@ const recieved =()=>{
         carmodel:carmodel,
         section:section,
         audit_type:audit_type,
-        position:position
+        position:position,
+        audit_categ:audit_categ
    	 },success:function(response){
         document.getElementById('audited_recieved_fas').innerHTML = response;
         $('#spinner').fadeOut(function(){

@@ -41,7 +41,7 @@ if ($method == 'fetch_history_list') {
         			echo '<td>'.$x['agency'].'</td>';
         			echo '<td>'.$x['hr'].'</td>';
         			echo '<td>'.$x['updated_by'].'</td>';
-        			echo '<td>'.$x['edit_count'].'</td>';
+        			echo '<td>'.$x['date_edited'].'</td>';
         		echo '</tr>';
         	}
         }else{

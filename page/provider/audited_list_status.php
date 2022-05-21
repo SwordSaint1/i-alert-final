@@ -100,7 +100,7 @@
                   <div class="col-12">
                           
                           <select class="form-control" id="status">
-                          <option value="">Select Status</option>
+                          <option value="">Modify Status</option>
                           <option value="IR"> IR</option>
                           <option value="Written"> Written</option>
                           <option value="Verbal"> Verbal</option>
@@ -121,6 +121,10 @@
                         <button class="btn btn-primary float-sm-right" onclick="update_status()">Update</button>
                   </div></th>
                 </div>
+                 <th> <div class="row">
+                     <div class="col-12 float-sm-right">
+                        <button class="btn btn-warning float-sm-right" onclick="close_status()">Close</button>
+                  </div></th></div>
         </table>
             
                  

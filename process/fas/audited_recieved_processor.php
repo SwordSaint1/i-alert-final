@@ -15,9 +15,10 @@ if ($method == 'fetch_recieve_fas') {
     $section = $_POST['section'];
     $audit_type = $_POST['audit_type'];
     $position = $_POST['position'];
+    $audit_categ = $_POST['audit_categ'];
     $c = 0;
 
-    $query = "SELECT * FROM ialert_audit WHERE date_sent != '' AND hr != '' AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%'  GROUP BY id ORDER BY date_audited ASC";
+    $query = "SELECT * FROM ialert_audit WHERE date_sent != '' AND hr != '' AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%' AND audited_categ LIKE '$audit_categ%' GROUP BY id ORDER BY date_audited ASC";
 
     $stmt = $conn->prepare($query);
     $stmt->execute();
@@ -47,6 +48,7 @@ if ($method == 'fetch_recieve_fas') {
 	                echo '<td>'.$x['pd'].'</td>';
 	                echo '<td>'.$x['date_sent'].'</td>';
 	                echo '<td>'.$x['hr'].'</td>';
+	                 echo '<td>'.$x['date_recieved'].'</td>';
                 echo '</tr>';         
 }
     }else{

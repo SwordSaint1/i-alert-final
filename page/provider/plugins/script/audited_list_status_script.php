@@ -118,4 +118,38 @@ const update_status =()=>{
    }
 }
 }
+
+
+const close_status =()=>{
+   var arr = [];
+    $('input.singleCheck:checkbox:checked').each(function () {
+        arr.push($(this).val());
+    });
+    var numberOfChecked = arr.length;
+    if(numberOfChecked > 0){
+
+    
+    $.ajax({
+        url: '../../process/provider/provider_processor.php',
+        type: 'POST',
+        cache: false,
+        data:{
+            method: 'close',
+            id:arr
+            
+        },success:function(response) {
+
+            if (response == 'success') {
+                swal('SUCCESS!', 'Success', 'success');
+                uncheck_all();
+                    load_list_of_audited_findings_provider_status();
+            }else{
+                swal('FAILED', 'FAILED', 'error');
+            }
+        }
+    });
+   }
+}
+
+
 </script>

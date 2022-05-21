@@ -16,10 +16,11 @@
     $section = $_POST['section'];
     $audit_type = $_POST['audit_type'];
     $position = $_POST['position'];
+    $audit_categ = $_POST['audit_categ'];
     $c = 0;
 
     $query = "SELECT * FROM ialert_audit
-    WHERE pd IN ('Written','Verbal','awol','resigned') AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%'  AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND section = '$section' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%' AND edit_count = 0  GROUP BY id ORDER BY date_audited ASC";
+    WHERE pd IN ('Written','Verbal','awol','resigned') AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%'  AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND section = '$section' AND audit_type LIKE '$audit_type%' AND position LIKE '$position%' AND edit_count = 0 AND audited_categ LIKE '$audit_categ%' GROUP BY id ORDER BY date_audited ASC";
 
     $stmt = $conn->prepare($query);
     $stmt->execute();

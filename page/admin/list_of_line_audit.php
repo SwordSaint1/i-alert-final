@@ -40,19 +40,27 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                       <label>Car Maker:</label>
                       <input type="text" name="car_maker" id="car_maker" class="form-control">
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                       <label>Car Model:</label>
                       <input type="text" name="car_model" id="car_model" class="form-control">
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                       <label>Line No:</label>
                       <input type="text" name="line_n" id="line_n" class="form-control">
+                    </div>
+                    <div class="col-3">
+                      <label>Audit Category</label>
+                      <select id="audit_cat" class="form-control">
+                        <option value="">Select Audit Category</option>
+                        <option value="minor">Minor </option>
+                        <option value="major">Major </option>
+                      </select>
                     </div>
 
                   </div>

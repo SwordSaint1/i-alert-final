@@ -50,6 +50,14 @@
               </p>
             </a>
           </li>
+           <li class="nav-item">
+            <a href="audited_close.php" class="nav-link ">
+              <i class=" fas fa-list"></i>
+              <p>
+              List of Audited Closed
+              </p>
+            </a>
+          </li>
            
         
           </li>  

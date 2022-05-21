@@ -65,22 +65,30 @@
                     </div>
 
                      <div class="row">
-                     <div class="col-4">
+                     <div class="col-3">
                 <span>Car Maker: </span>
                   <input type="text" name="carmaker" id="carmaker_recieved" class="form-control">
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                   <span>Car Model: </span>
                   <input type="text" name="carmodel" id="carmodel_recieved" class="form-control">
                   
                   </div>
-                   <div class="col-4">
+                   <div class="col-3">
                   <span>Audit Type: </span>
                    <select class="form-control" id="audit_type_recieved">
                         <option value="">Select Audit Type</option>
                         <option value="initial">Initial</option>
                         <option value="final">Final</option>
                         <option value="warehouse">Warehouse</option>
+                    </select>
+                  </div>
+                   <div class="col-3">
+                     <span>Audit Category: </span>
+                   <select class="form-control" id="audit_categ_recieved">
+                        <option value="">Select Audit Category</option>
+                        <option value="minor">Minor</option>
+                        <option value="major">Major</option>
                     </select>
                   </div>
                   </div>
@@ -123,6 +131,7 @@
                     <th style="text-align:center;">Concerned Group</th>              
                     <th style="text-align:center;">Date Sent</th> 
                     <th style="text-align:center;">HR Status</th> 
+                    <th style="text-align:center;">Date Recieved</th> 
 
                 </thead>
                 <tbody id="audited_recieved_fas" style="text-align:center;"></tbody>

@@ -39,10 +39,11 @@ if ($method == 'fetch_audited_list_provider') {
         $lname = $_POST['lname'];
         $carmaker = $_POST['carmaker'];
         $carmodel = $_POST['carmodel'];
+        $audit_categ = $_POST['audit_categ'];
         $c = 0;
 
     $query = "SELECT * FROM ialert_audit
-    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND agency IS NULL
+    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND line_no LIKE '$lname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND agency IS NULL AND audited_categ LIKE '$audit_categ%'
      GROUP BY id ORDER BY date_audited ASC";
 
     $stmt = $conn->prepare($query);
@@ -151,7 +152,7 @@ if ($method == 'fetch_audited_list_provider_status') {
     $c = 0;
 
     $query = "SELECT * FROM ialert_audit
-    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND agency != ''
+    WHERE  employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo')  AND provider = '$esection' AND agency != '' AND edit_count != '0'
      GROUP BY id ORDER BY date_audited ASC";
 
     $stmt = $conn->prepare($query);
@@ -197,6 +198,29 @@ if ($method == 'fetch_audited_list_provider_status') {
             }
 }
 
+// if ($method == 'update') {
+//     $id = [];
+//     $id = $_POST['id'];
+//     $status = $_POST['status'];
+//     //COUNT OF ITEM TO BE UPDATED
+//     $count = count($id);
+//     foreach($id as $x){
+//         $update = "UPDATE ialert_audit SET agency = '$status' WHERE id = '$x'";
+//         $stmt = $conn->prepare($update);
+//         if ($stmt->execute()) {
+//             // echo 'approved';
+//             $count = $count - 1;
+//         }else{
+//             // echo 'error';
+//         }
+//     }
+//         if($count == 0){
+//             echo 'success';
+//         }else{
+//             echo 'fail';
+//         }
+// }  
+
 if ($method == 'update') {
     $id = [];
     $id = $_POST['id'];
@@ -204,7 +228,10 @@ if ($method == 'update') {
     //COUNT OF ITEM TO BE UPDATED
     $count = count($id);
     foreach($id as $x){
-        $update = "UPDATE ialert_audit SET agency = '$status' WHERE id = '$x'";
+         $history = "INSERT INTO ialert_history (`audit_id`,`batch`,`date_audited`,`full_name`,`employee_id`,`provider`,`groups`,`carmaker`,`carmodel`,`line_no`,`process`,`audit_findings`,`audited_by`,`audit_category`,`remarks`,`pd`,`agency`,`hr`,`updated_by`,`edit_count`,`position`,`date_edited`) SELECT id, batch, date_audited, full_name, employee_num, provider, groups, car_maker, car_model, line_no, process, audit_findings, audited_by, audited_categ, remarks, pd, agency, hr, updated_by, edit_count, position, '$server_date_time' FROM ialert_audit WHERE id = '$x'";
+       $stmt2 = $conn->prepare($history);
+       if ($stmt2->execute()) {
+           $update = "UPDATE ialert_audit SET agency = '$status', edit_count = edit_count - 1 WHERE id = '$x'";
         $stmt = $conn->prepare($update);
         if ($stmt->execute()) {
             // echo 'approved';
@@ -212,6 +239,39 @@ if ($method == 'update') {
         }else{
             // echo 'error';
         }
+       }
+
+       
+    }
+        if($count == 0){
+            echo 'success';
+        }else{
+            echo 'fail';
+        }
+}  
+
+
+
+if ($method == 'close') {
+    $id = [];
+    $id = $_POST['id'];
+    //COUNT OF ITEM TO BE UPDATED
+    $count = count($id);
+    foreach($id as $x){
+         $history = "INSERT INTO ialert_history (`audit_id`,`batch`,`date_audited`,`full_name`,`employee_id`,`provider`,`groups`,`carmaker`,`carmodel`,`line_no`,`process`,`audit_findings`,`audited_by`,`audit_category`,`remarks`,`pd`,`agency`,`hr`,`updated_by`,`edit_count`,`position`,`date_edited`) SELECT id, batch, date_audited, full_name, employee_num, provider, groups, car_maker, car_model, line_no, process, audit_findings, audited_by, audited_categ, remarks, pd, agency, hr, updated_by, edit_count, position, '$server_date_time' FROM ialert_audit WHERE id = '$x'";
+       $stmt2 = $conn->prepare($history);
+       if ($stmt2->execute()) {
+           $update = "UPDATE ialert_audit SET edit_count = 0 WHERE id = '$x'";
+        $stmt = $conn->prepare($update);
+        if ($stmt->execute()) {
+            // echo 'approved';
+            $count = $count - 1;
+        }else{
+            // echo 'error';
+        }
+       }
+
+       
     }
         if($count == 0){
             echo 'success';

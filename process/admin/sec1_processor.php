@@ -14,7 +14,7 @@ if ($method == 'fetch_sec1') {
 		$position = $_POST['position'];
         $c = 0;
 
-        $sec1 = "SELECT * FROM ialert_audit WHERE section = 'Section1' AND pd IS NULL AND agency IS NULL AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND line_no LIKE '$line%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND position LIKE '$position%' ";
+        $sec1 = "SELECT * FROM ialert_audit WHERE section = 'Section1' AND pd IS NULL AND agency IS NULL AND employee_num LIKE '$empid%' AND full_name LIKE '$fname%' AND line_no LIKE '$line%' AND car_maker LIKE '$carmaker%' AND car_model LIKE '$carmodel%' AND position LIKE '$position%' AND provider = 'FAS'";
         $stmt = $conn->prepare($sec1);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -94,7 +94,7 @@ if ($method == 'count_section1') {
         $agency = $x['agency'];
         $days_notif = date("Y-m-d", strtotime('+4 day',strtotime($date_audited)));
 
-            $count_na = "SELECT COUNT(*) as total FROM ialert_audit WHERE  pd IS NULL AND agency IS NULL AND section = 'Section1' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') ";
+            $count_na = "SELECT COUNT(*) as total FROM ialert_audit WHERE  pd IS NULL AND agency IS NULL AND section = 'Section1' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') AND provider = 'FAS' ";
             $stmt2 = $conn->prepare($count_na);
             $stmt2->execute();
             foreach($stmt2->fetchALL() as $j){
@@ -111,7 +111,7 @@ if ($method == 'count_section1') {
 if ($method == 'total_sec1') {
     $dateFrom = $_POST['dateFrom'];
     $dateTo = $_POST['dateTo'];
-    $count_total = "SELECT count(*) as grand_total from ialert_audit where section = 'Section1' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') ";
+    $count_total = "SELECT count(*) as grand_total from ialert_audit where section = 'Section1' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') AND provider = 'FAS'";
     $stmt = $conn->prepare($count_total);
     $stmt->execute();
 

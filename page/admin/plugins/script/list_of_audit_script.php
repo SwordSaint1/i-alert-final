@@ -12,7 +12,10 @@ const load_list_of_audit_findings =()=>{
      var carmaker = document.getElementById('carmaker').value;
      var carmodel = document.getElementById('carmodel').value;
      var position = document.getElementById('position').value;
-
+     var audit_categ = document.getElementById('audit_cat').value;
+     var audit_type = document.getElementById('audit_typ').value;
+     var section = document.getElementById('sect').value;
+     var provider = document.getElementById('prov').value;
            $.ajax({
                 url: '../../process/admin/list_of_audit_processor.php',
                 type: 'POST',
@@ -26,7 +29,11 @@ const load_list_of_audit_findings =()=>{
                     line:line,
                     carmaker:carmaker,
                     carmodel:carmodel,
-                    position:position
+                    position:position,
+                    audit_categ:audit_categ,
+                    audit_type:audit_type,
+                    section:section,
+                    provider:provider
                 },success:function(response){
                     document.getElementById('audit_data').innerHTML = response;
                     $('#spinner').fadeOut(function(){                       

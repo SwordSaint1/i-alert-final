@@ -13,7 +13,7 @@ const closed =()=>{
      var section = document.getElementById('section_closed').value;
      var audit_type = document.getElementById('audit_type_closed').value;
      var position = document.getElementById('position_closed').value;
-     
+     var audit_categ = document.getElementById('audit_categ_closed').value;
      $.ajax({
      url: '../../process/fas/audited_closed_processor.php',
      type: 'POST',
@@ -30,7 +30,8 @@ const closed =()=>{
         carmodel:carmodel,
         section:section,
         audit_type:audit_type,
-        position:position
+        position:position,
+        audit_categ:audit_categ
    	 },success:function(response){
         document.getElementById('audited_closed_fas').innerHTML = response;
         $('#spinner').fadeOut(function(){

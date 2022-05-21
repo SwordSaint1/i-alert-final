@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	
+	 
 const load_list_of_audited_findings_fass_status =()=>{
     $('#spinner').css('display','block');
      var empid = document.getElementById('empid_audited_fass_status').value;
@@ -12,6 +12,7 @@ const load_list_of_audited_findings_fass_status =()=>{
      var carmodel = document.getElementById('carmodel_status').value;
      var audit_type = document.getElementById('audit_type_status').value;
      var esection = '<?=$esection;?>';
+     var audit_categ = document.getElementById('audit_categ_status').value;
 
            $.ajax({
                 url: '../../process/fas/audited_list_status_fas_processor.php',
@@ -28,7 +29,8 @@ const load_list_of_audited_findings_fass_status =()=>{
                     position:position,
                     carmaker:carmaker,
                     carmodel:carmodel,
-                    audit_type:audit_type
+                    audit_type:audit_type,
+                    audit_categ:audit_categ
                     
                 },success:function(response){
                     document.getElementById('audited_data_fass_status').innerHTML = response;
@@ -167,5 +169,39 @@ const sent_date =()=>{
         }
     });
    }
-}   	
+}   
+
+const close_data =()=>{
+     var arr = [];
+    $('input.singleCheck:checkbox:checked').each(function () {
+        arr.push($(this).val());
+    });
+    var numberOfChecked = arr.length;
+    if(numberOfChecked > 0){
+   var update_by =  '<?=$name;?>';
+  
+    $.ajax({
+        url: '../../process/fas/audited_list_status_fas_processor.php',
+        type: 'POST',
+        cache: false,
+        data:{
+            method: 'closed',
+            id:arr,
+            update_by:update_by
+      
+            
+        },success:function(response) {
+            console.log(response);
+            if (response == 'success') {
+             load_list_of_audited_findings_fass_status();
+             uncheck_all();
+                swal('SUCCESS!', 'Success', 'success');
+               
+            }else{
+                swal('FAILED', 'FAILED', 'error');
+            }
+        }
+    }); 
+   }
+}	
 </script>

@@ -66,16 +66,16 @@
                     </div>
 
                      <div class="row">
-                     <div class="col-4">
+                     <div class="col-3">
                 <span>Car Maker: </span>
                   <input type="text" name="carmaker" id="carmaker" class="form-control">
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                   <span>Car Model: </span>
                   <input type="text" name="carmodel" id="carmodel" class="form-control">
                   <input type="hidden" name="count_section" id="count_section" value="<?=$section;?>">
                   </div>
-                   <div class="col-4">
+                   <div class="col-3">
                   <span>Audit Type: </span>
                    <select class="form-control" id="audit_type">
                         <option value="">Select Audit Type</option>
@@ -84,8 +84,17 @@
                         <option value="warehouse">Warehouse</option>
                     </select>
                   </div>
+                  <div class="col-3">
+                     <span>Audit Category: </span>
+                   <select class="form-control" id="audit_categ">
+                        <option value="">Select Audit Category</option>
+                        <option value="minor">Minor</option>
+                        <option value="major">Major</option>
+                    </select>
+                  </div>
                     </div>
-        
+
+                   
               
 
             <br>

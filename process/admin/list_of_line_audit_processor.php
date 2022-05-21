@@ -9,9 +9,10 @@ if ($method == 'fetch_line_audit_list') {
         $line_n = $_POST['line_n'];
         $carmaker = $_POST['carmaker'];
         $carmodel = $_POST['carmodel'];
+        $audit_categ = $_POST['audit_categ'];
         $c = 0;
 
-     	$query ="SELECT * FROM ialert_line_audit WHERE  line_no LIKE '$line_n%' AND car_model LIKE '$carmodel%' AND car_maker LIKE '$carmaker%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') GROUP BY id ORDER BY date_audited ASC";
+     	$query ="SELECT * FROM ialert_line_audit WHERE  line_no LIKE '$line_n%' AND car_model LIKE '$carmodel%' AND car_maker LIKE '$carmaker%' AND (date_audited >='$dateFrom' AND date_audited <= '$dateTo') AND audited_categ LIKE '$audit_categ%' GROUP BY id ORDER BY date_audited ASC";
 
 	    $stmt = $conn->prepare($query);
 	    $stmt->execute();
