@@ -132,6 +132,34 @@ if ($method == 'fetch_audited_list_fas') {
             }
 }
 
+// if ($method == 'update_fas') {
+//     $id = [];
+//     $id = $_POST['id'];
+//     $status = $_POST['status'];
+//     //COUNT OF ITEM TO BE UPDATED
+//     $count = count($id);
+//     foreach($id as $x){
+
+   
+       
+//         $update = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x'";
+//         $stmt2 = $conn->prepare($update);
+//         if ($stmt2->execute()) {
+//             // echo 'approved';
+//             $count = $count - 1;
+//         }else{
+//             // echo 'error';
+//         }
+//     }
+
+//         if($count == 0){
+//             echo 'success';
+//         }else{
+//             echo 'fail';
+        
+// } 
+// }
+
 if ($method == 'update_fas') {
     $id = [];
     $id = $_POST['id'];
@@ -139,24 +167,88 @@ if ($method == 'update_fas') {
     //COUNT OF ITEM TO BE UPDATED
     $count = count($id);
     foreach($id as $x){
+    	$select = "SELECT employee_num FROM ialert_audit WHERE id = '$x'";
+    	$stmt = $conn->prepare($select);
+    	$stmt->execute();
+    	if ($stmt->rowCount() > 0) {
+    		foreach($stmt->fetchALL() as $i){
+    			 $emp = $i['employee_num'];
+    		}
+    			$count = "SELECT count(audit_findings) as audit_count, audit_findings FROM ialert_audit WHERE employee_num = '$emp'";
+    	$stmt2 = $conn->prepare($count);
+    	$stmt2->execute();
+    	if ($stmt2->rowCount() > 0) {
+    		foreach($stmt2->fetchALL() as $o){
+    		 $audit_count = $o['audit_count'];
+    		 $audit_findings = $o['audit_findings'];
+    		}
 
-       
-        $update = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x'";
-        $stmt2 = $conn->prepare($update);
-        if ($stmt2->execute()) {
-            // echo 'approved';
-            $count = $count - 1;
-        }else{
-            // echo 'error';
-        }
-    }
+    		if ($audit_count >= 3) {
+    				if ($status != 'IR') {
+    					echo 'invalid';
+    				}else{
+    					$update = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
+    					$stmt3 = $conn->prepare($update);
+    					if ($stmt3->execute()) {
+    						// echo 'success';
+    						 $count = $count - 1;
+    					}else{
+    						echo 'error';
+    					}
+    				}
+    		}else{
+    				$check = "SELECT audit_findings FROM ialert_for_ir";
+    				$stmt4 = $conn->prepare($check);
+    				if ($stmt4->execute()) {
+    					foreach($stmt4->fetchALL() as $p){
+    						$audit_findingss = $p['audit_findings'];
+    					}
 
-        if($count == 0){
-            echo 'success';
-        }else{
-            echo 'fail';
-        
-} 
+    					if ($audit_findings == 'Un Authorized person doing the process') {
+    						if ($status != 'IR') {
+    							echo 'invalid';
+    						}else{
+
+    							if ($status == 'IR') {
+    								$update2 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x'";
+    							$stmt5 = $conn->prepare($update2);
+    							if ($stmt5->execute()) {
+    								echo 'success';
+    								 // $count = $count - 1;
+    							}else{
+    								echo 'error';
+    							}
+    							}
+
+    							
+    						}
+    					}elseif($audit_findings == 'Un Authorized Repair/Hidden Repair'){
+    						if ($status != 'IR') {
+    							echo 'invalid';
+    						}if ($status == 'IR') {
+    								echo 'a';
+    							
+    							
+    						}
+    					}
+    				}
+    		}
+    	}
+
+
+    	}
+
+
+
+    	
+    	}
+
+        // if($count == 0){
+        //     echo 'success';
+        // }else{
+            // echo 'fail';
+// }
 }
+
 $conn = NULL;
 ?>

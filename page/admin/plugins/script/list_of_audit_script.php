@@ -126,7 +126,9 @@ const delete_audit =()=>{
 const count =()=>{
       var employee_num_count = document.querySelector('#employee_num_count').value;
       var full_name_count = document.getElementById('full_name_count').value;
-    // console.log(tangina);
+     if (employee_num_count == '' && full_name_count == '') {
+        swal('Information','Please Input Employee No OR Full Name','info');
+     }else{
     $.ajax({
         url:'../../process/admin/count_processor.php',
         type:'POST',
@@ -140,7 +142,7 @@ const count =()=>{
         }
     });
 }
-
+}
 const get_set =(param)=>{
     var data = param.split('~!~');
     var id = data[0];

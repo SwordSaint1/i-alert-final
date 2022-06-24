@@ -36,31 +36,42 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                    <div class="row">
-            <table>
-              <tr>
-                <th>
-                  <div class="row">
-                    <div class="col-4">
-                <span>Employee ID: </span>
+              
+
+          <div class="row">
+          <div class="col-4">
+             <span>Employee ID: </span>
                   <input type="text" name="empid" id="empid_audited_provider_status" class="form-control">
-                    </div>
-                    <div class="col-4">
-                  <span>Full Name: </span>
-                  <input type="text" name="fname" id="fname_audited_provider_status" class="form-control">
-                   </div>
-                    <div class="col-4">
-                  <span>Line Name: </span>
-                  <input type="text" name="lname" id="lname_audited_provider_status" class="form-control">
-                   </div>
-                </div>
-
-                </th>
-              </tr>
-
-            
-            </table>
           </div>
+          <div class="col-4">
+              <span>Full Name: </span>
+                  <input type="text" name="fname" id="fname_audited_provider_status" class="form-control">
+          </div>
+          <div class="col-4">
+              <span for="">Line No:</span>  <input type="text" id="lname_audited_provider_status" class="form-control" autocomplete=off>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-4">
+              <span>Car Maker: </span>
+                  <input type="text" name="carmaker" id="carmaker_provider_status" class="form-control">
+          </div>
+          <div class="col-4">
+            <span>Car Model: </span>
+                  <input type="text" name="carmodel" id="carmodel_provider_status" class="form-control">
+          </div>
+          <div class="col-4">
+            <span>Audit Category: </span>
+                  <select class="form-control" id="audit_categ_provider_status" name="audit_categ">
+                    <option value=""> Select Audit Category</option>
+                    <option value="minor">Minor </option>
+                    <option value="major">Major </option>
+                  </select>
+          </div>
+      </div>
+
+
+                
                 </h3>
 
                 <div class="card-tools">
@@ -70,6 +81,8 @@
                   </div>
                 </div>
               </div>
+             
+              <br>
               
               <!-- /.card-header -->
                <div class="row">

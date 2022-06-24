@@ -72,7 +72,7 @@ if ($method == 'update_fass') {
     $count = count($id);
     foreach($id as $x){
 
-        $history = "INSERT INTO ialert_history (`audit_id`,`batch`,`date_audited`,`full_name`,`employee_id`,`provider`,`groups`,`carmaker`,`carmodel`,`line_no`,`process`,`audit_findings`,`audited_by`,`audit_category`,`remarks`,`pd`,`agency`,`hr`,`updated_by`,`edit_count`,`position`,`date_edited`) SELECT id, batch, date_audited, full_name, employee_num, provider, groups, car_maker, car_model, line_no, process, audit_findings, audited_by, audited_categ, remarks, pd, agency, hr, updated_by, edit_count, position, '$server_date_time' FROM ialert_audit WHERE id = '$x'";
+        $history = "INSERT INTO ialert_history (`audit_id`,`batch`,`date_audited`,`full_name`,`employee_id`,`provider`,`groups`,`carmaker`,`carmodel`,`line_no`,`process`,`audit_findings`,`audited_by`,`audit_category`,`remarks`,`pd`,`agency`,`hr`,`updated_by`,`edit_count`,`position`,`date_edited`,`indicator_id`) SELECT id, batch, date_audited, full_name, employee_num, provider, groups, car_maker, car_model, line_no, process, audit_findings, audited_by, audited_categ, remarks, pd, agency, hr, updated_by, edit_count, position, '$server_date_time',id FROM ialert_audit WHERE id = '$x'";
        $stmt2 = $conn->prepare($history);
        if ($stmt2->execute()) {
            

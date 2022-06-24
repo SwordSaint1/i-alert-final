@@ -10,7 +10,7 @@ const counts =()=>{
         var esection = '<?$esection;?>';
         var section = document.getElementById('count_section').value;
 
-        console.log(car_maker);
+        // console.log(car_maker);
         $.ajax({
                 url: '../../process/fas/audited_list_fas_processor.php',
                 type: 'POST',
@@ -121,16 +121,20 @@ const update_status_fas =()=>{
       
             
         },success:function(response) {
-            console.log(response);
-            if (response == 'success') {
+            // console.log(response);
+            if (response == 'invalid') {
+                swal('Information', 'Select IR Status','info');
+            }
+           else if (response == 'success') {
              load_list_of_audited_findings_fas();
              counts();
              uncheck_all();
                 swal('SUCCESS!', 'Success', 'success');
                 $('#status_fas').val('');
-            }else{
-                swal('FAILED', 'FAILED', 'error');
             }
+            // else{
+            //     swal('FAILED', 'FAILED', 'error');
+            // }
         }
     });
    }

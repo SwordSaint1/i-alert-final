@@ -7,6 +7,10 @@ const load_list_of_audited_findings_provider_status =()=>{
     var dateFrom = document.getElementById('providerauditedliststatusdatefrom').value;
     var dateTo = document.getElementById('providerauditedliststatusdateto').value;
     var esection = '<?=$esection;?>';
+    var line_no = document.getElementById('lname_audited_provider_status').value;
+    var carmaker = document.getElementById('carmaker_provider_status').value;
+    var carmodel = document.getElementById('carmodel_provider_status').value;
+    var audit_categ = document.getElementById('audit_categ_provider_status').value;
            $.ajax({
                 url: '../../process/provider/provider_processor.php',
                 type: 'POST',
@@ -17,7 +21,11 @@ const load_list_of_audited_findings_provider_status =()=>{
 					dateTo:dateTo,
                     empid:empid,
                     fname:fname,
-                    esection:esection
+                    esection:esection,
+                    line_no:line_no,
+                    carmaker:carmaker,
+                    carmodel:carmodel,
+                    audit_categ:audit_categ
                     
                 },success:function(response){
                     document.getElementById('audited_data_provider_status').innerHTML = response;

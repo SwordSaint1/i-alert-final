@@ -22,7 +22,7 @@ if ($method == 'fetch_history_list') {
         	foreach($stmt->fetchALL() as $x){
         		$c++;
         		echo '<tr>';
-        			echo '<td>'.$c.'</td>';
+        			echo '<td>'.$x['indicator_id'].'</td>';
         			echo '<td>'.$x['date_audited'].'</td>';
         			echo '<td>'.$x['full_name'].'</td>';
         			echo '<td>'.$x['employee_id'].'</td>';
