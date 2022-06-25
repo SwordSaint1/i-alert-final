@@ -2,6 +2,7 @@
 
 $(document).ready(function(){
     counts();
+    load_list_of_audited_findings_fas();
 });	
 
 const counts =()=>{
@@ -122,19 +123,21 @@ const update_status_fas =()=>{
             
         },success:function(response) {
             // console.log(response);
-            if (response == 'invalid') {
-                swal('Information', 'Select IR Status','info');
-            }
-           else if (response == 'success') {
-             load_list_of_audited_findings_fas();
+
+
+            if (response == 'success') {
+                load_list_of_audited_findings_fas();
              counts();
              uncheck_all();
                 swal('SUCCESS!', 'Success', 'success');
                 $('#status_fas').val('');
-            }
-            // else{
-            //     swal('FAILED', 'FAILED', 'error');
-            // }
+            }else{
+                 swal('Information', 'Select IR Status','info');
+                 load_list_of_audited_findings_fas();
+             counts();
+             uncheck_all();
+             $('#status_fas').val('');
+             }
         }
     });
    }
