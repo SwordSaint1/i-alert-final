@@ -155,10 +155,11 @@ if ($method == 'fetch_audited_list_fas') {
 //         if($count == 0){
 //             echo 'success';
 //         }else{
-//             echo 'fail';
-        
-// } 
+//             echo 'fail';      
+// 		} 
 // }
+
+
 
 
 if ($method == 'update_fas') {
@@ -168,169 +169,63 @@ if ($method == 'update_fas') {
     //COUNT OF ITEM TO BE UPDATED
     $count = count($id);
     foreach($id as $x){
-
-    		// $get_emp = "SELECT employee_num FROM ialert_audit WHERE id ='$x'";
-    		// $stmt14 = $conn->prepare($get_emp);
-    		// if ($stmt14->execute()) {
-    		// 	foreach($stmt14->fetchALL() as $j){
-    		// 		$employee_num = $j['employee_num'];
-
-    		// 		$audit_counts = "SELECT count(audit_findings) as audit_count FROM ialert_audit WHERE employee_num = '$employee_num'";
-    		// 		$stmt15 = $conn->prepare($audit_counts);
-    		// 		if ($stmt15->execute()) {
-    		// 			foreach($stmt15->fetchALL() as $j){
-    		// 				$audit_count = $j['audit_count'];
-    		// 			}
-    		// 			if ($audit_count >= 3) {
-    		// 				if ($status == 'IR') {
-    		// 					$update11 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    		// 						$stmt16 = $conn->prepare($update11);
-    		// 						if ($stmt16->execute()) {
-    		// 						 	echo 'success';
-    		// 						 }else{
-    		// 						 	echo 'error';
-    		// 						 } 
-    		// 				}
-    		// 			}else{
-    						
-    		// 			}
-    		// 		}
-
-    		// 	}
-    		// }
-
-
-    		$check_audit = "SELECT audit_findings FROM ialert_audit WHERE id = '$x'";
-    		$stmt = $conn->prepare($check_audit);
+    	$get_emp = "SELECT employee_num, audit_findings FROM ialert_audit WHERE id ='$x'";
+    		$stmt = $conn->prepare($get_emp);
     		if ($stmt->execute()) {
     			foreach($stmt->fetchALL() as $j){
+    				 $employee_num = $j['employee_num'];
     				 $audit_findings = $j['audit_findings'];
 
-    				 if ($audit_findings == 'Un Authorized Repair/Hidden Repair') {
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update2 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt5 = $conn->prepare($update2);
-    								if ($stmt5->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Bringing of prohibited tool'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update3 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt6 = $conn->prepare($update3);
-    								if ($stmt6->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Un Authorized person doing the process'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update4 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt7 = $conn->prepare($update4);
-    								if ($stmt7->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Intentional Act of making defect'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update5 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt8 = $conn->prepare($update5);
-    								if ($stmt8->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Intentional Act of making defect'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update6 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt9 = $conn->prepare($update6);
-    								if ($stmt9->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Pulling of inserted wire on connector to dis-insert'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update7 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt10 = $conn->prepare($update7);
-    								if ($stmt10->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Non Compliance on insert-pull method'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update8 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt11 = $conn->prepare($update8);
-    								if ($stmt11->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Not following dimension inspection rule'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update9 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt12 = $conn->prepare($update9);
-    								if ($stmt12->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else if($audit_findings == 'Using of prohibited tool on prohibited act'){
-    							if ($status != 'IR') {
-    								echo 'invalid';
-    							}else{
-    								$update10 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt12 = $conn->prepare($update10);
-    								if ($stmt12->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    							}
-    						}else{
-    							
-    							$update11 = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
-    								$stmt13 = $conn->prepare($update11);
-    								if ($stmt13->execute()) {
-    								 	echo 'success';
-    								 }else{
-    								 	echo 'error';
-    								 } 
-    						}			
-    			}
-    		}
+    				$audit_counts = "SELECT count(audit_findings) as audit_count FROM ialert_audit WHERE employee_num = '$employee_num' AND audit_findings = '$audit_findings'";
+    				$stmt2 = $conn->prepare($audit_counts);
+    				if ($stmt2->execute()) {
+    					foreach($stmt2->fetchALL() as $j){
+    						 $audit_count = $j['audit_count'];
 
+    						 if ($audit_count >= 3 && $status != 'IR'){
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Un Authorized Repair/Hidden Repair') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Bringing of prohibited tool') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Un Authorized person doing the process') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Intentional Act of making defect') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Pulling of inserted wire on connector to dis-insert') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Not following visual inspection rule') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Non Compliance on insert-pull method') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Not following dimension inspection rule') {
+    						 			echo 'invalid';
+    						 }else if ($status != 'IR' && $audit_findings == 'Using of prohibited tool on prohibited act') {
+    						 			echo 'invalid';
+    						 }else{
+    						 		$update = "UPDATE ialert_audit SET pd = '$status' WHERE id = '$x' ";
+    								$stmt3 = $conn->prepare($update);
+    								if ($stmt3->execute()) {
+    								 	echo 'success';
+    								 }else{
+    								 	echo 'error';
+    								 } 
+    						 }
 
+    						 	
+    					}
+    				
 
-    	}
+    		
+        }
+        		
+    }
+
 }
+}
+
+}
+
 
 $conn = NULL;
 ?>

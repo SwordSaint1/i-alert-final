@@ -122,8 +122,8 @@ const update_status_fas =()=>{
       
             
         },success:function(response) {
-            // console.log(response);
-
+            console.log(response);
+            
 
             if (response == 'success') {
                 load_list_of_audited_findings_fas();
